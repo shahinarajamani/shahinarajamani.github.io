@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Shahina Rajamani — AI/ML Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF9F5; --ink:#181A22; --muted:#5D6270; --line:#E4E1D8;
+    --hero:#131226; --hero-ink:#F2F0EA; --hero-muted:#B7B4CB;
+    --violet:#6C5CE7; --cyan:#22C3B6; --coral:#FF6F59;
+    padding-top: env(safe-area-inset-top,0px);
+    padding-bottom: env(safe-area-inset-bottom,0px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#15141F; --ink:#EEEDF2; --muted:#9C99B0; --line:#2B2A3A; --card:#1C1B29;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#15141F; --ink:#EEEDF2; --muted:#9C99B0; --line:#2B2A3A; --card:#1C1B29;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-padding-top:env(safe-area-inset-top,0px);}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.6;}
+  .serif{font-family:'Fraunces',Georgia,serif;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;}
+  .wrap{max-width:1020px;margin:0 auto;padding:0 32px;}
+
+  header.site{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px);}
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;max-width:1020px;margin:0 auto;gap:20px;flex-wrap:wrap;}
+  .brand{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.5rem;font-weight:500;text-decoration:none;}
+  .brand em{font-style:italic;background:linear-gradient(90deg,var(--violet),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  nav.pages{display:flex;gap:2px;flex-wrap:wrap;}
+  nav.pages a{text-decoration:none;font-size:.86rem;padding:8px 13px;border-radius:20px;color:var(--muted);transition:color .2s ease, background .2s ease, transform .2s ease;}
+  nav.pages a:hover{color:var(--ink);transform:translateY(-1px);}
+  nav.pages a.active{color:var(--ink);background:var(--line);}
+
+  main{min-height:60vh;}
+  .page{display:none;opacity:1;transform:none;}
+  .page.active{display:block;}
+  .page.active.leaving{opacity:0;transform:translateY(-10px);transition:opacity .18s ease,transform .18s ease;}
+  .page.active.entering{animation:pageIn .5s ease both;}
+  @keyframes pageIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ---- Hero ---- */
+  .hero{position:relative;background:var(--hero);color:var(--hero-ink);overflow:hidden;padding:76px 0 64px;}
+  .hero svg{position:absolute;inset:0;width:100%;height:100%;opacity:.55;}
+  .hero svg circle{fill:var(--cyan);}
+  .hero svg circle.v{fill:var(--violet);}
+  .hero svg line{stroke:var(--hero-muted);stroke-width:1;opacity:.35;}
+  .hero .wrap{position:relative;z-index:1;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:var(--cyan);margin:0 0 14px;}
+  .hero-name{font-family:'Cormorant Garamond',serif;font-size:4.1rem;font-weight:500;line-height:1.08;margin:0 0 12px;max-width:12ch;}
+  .hero-name .accent{font-style:italic;background:linear-gradient(90deg,var(--violet),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .hero-sum{max-width:56ch;color:var(--hero-muted);font-size:1.06rem;margin-bottom:32px;}
+  .hero-cta{display:flex;gap:12px;flex-wrap:wrap;}
+  .btn{display:inline-block;padding:11px 20px;border-radius:24px;font-size:.88rem;text-decoration:none;border:1px solid rgba(255,255,255,.25);color:var(--hero-ink);transition:transform .15s ease;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn.primary{background:linear-gradient(90deg,var(--violet),var(--cyan));border-color:transparent;color:#0B0A16;font-weight:600;}
+
+  .facts{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--line);}
+  .fact{flex:1 1 200px;padding:22px 32px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);transition:background .2s ease;}
+  .fact:hover{background:var(--line);}
+  .fact:last-child{border-right:none;}
+  .fact .n{font-family:'Fraunces',serif;font-size:1.5rem;}
+  .fact .l{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--muted);margin-top:2px;}
+
+  .contact-row{display:flex;gap:22px;flex-wrap:wrap;font-size:.86rem;padding:26px 0 8px;color:var(--muted);}
+  .contact-row a{text-decoration:none;}
+  .contact-row a:hover{color:var(--violet);}
+
+  section{padding:44px 0;}
+  section h2{font-family:'Fraunces',serif;font-size:1.7rem;font-weight:500;margin:0 0 26px;}
+
+  /* ---- Timeline (Experience) ---- */
+  .tl{position:relative;padding-left:26px;border-left:2px solid var(--line);}
+  .tl-item{position:relative;margin-bottom:32px;transition:transform .2s ease;}
+  .tl-item:hover{transform:translateX(4px);}
+  .tl-item:before{content:"";position:absolute;left:-33px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--violet);box-shadow:0 0 0 4px var(--paper);}
+  .tl-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px 16px;margin-bottom:6px;}
+  .tl-title{font-weight:600;font-size:1.05rem;}
+  .tl-org{color:var(--muted);font-size:.92rem;margin-bottom:8px;}
+  .tl-date{font-family:'IBM Plex Mono',monospace;font-size:.76rem;color:var(--muted);white-space:nowrap;}
+  .tl-item ul{margin:0;padding-left:18px;}
+  .tl-item li{margin-bottom:6px;font-size:.95rem;}
+
+  /* ---- Projects ---- */
+  .proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  @media (max-width:640px){.proj-grid{grid-template-columns:1fr;}}
+  .proj{border-top:3px solid var(--accent,var(--violet));background:var(--card,#fff);border-radius:2px;padding:22px 22px 20px;box-shadow:0 1px 0 var(--line);transition:transform .25s ease, box-shadow .25s ease;}
+  .proj:hover{transform:translateY(-5px);box-shadow:0 14px 28px rgba(20,18,40,.1);}
+  .proj h3{font-family:'Fraunces',serif;font-weight:500;font-size:1.12rem;margin:0 0 10px;}
+  .proj ul{margin:0 0 14px;padding-left:18px;}
+  .proj li{font-size:.87rem;margin-bottom:5px;color:var(--ink);}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;}
+  .tag{font-family:'IBM Plex Mono',monospace;font-size:.7rem;padding:3px 8px;border:1px solid var(--line);border-radius:3px;color:var(--muted);}
+
+  /* ---- Skills ---- */
+  .skill-block{margin-bottom:24px;}
+  .skill-label{font-family:'IBM Plex Mono',monospace;font-size:.74rem;color:var(--violet);margin-bottom:10px;}
+  .cluster{display:flex;flex-wrap:wrap;gap:9px;}
+  .chip{font-size:.87rem;padding:6px 13px;border-radius:20px;border:1px solid var(--line);transition:border-color .2s ease, transform .2s ease, color .2s ease;}
+  .chip:hover{border-color:var(--violet);color:var(--violet);transform:translateY(-2px);}
+  .chip.big{font-size:.98rem;font-weight:500;border-color:var(--violet);}
+
+  .edu-entry{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--line);}
+  .edu-entry:last-child{border-bottom:none;}
+  .edu-entry .school{font-family:'Fraunces',serif;font-size:1.15rem;}
+  .edu-entry .deg{color:var(--muted);font-size:.9rem;margin-top:3px;}
+
+  /* ---- Contact ---- */
+  .contact-card{background:var(--hero);color:var(--hero-ink);border-radius:8px;padding:40px;max-width:480px;position:relative;overflow:hidden;}
+  .contact-card:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(108,92,231,.25),transparent 60%);}
+  .contact-card a{position:relative;display:block;margin-bottom:16px;text-decoration:none;font-size:1rem;}
+  .contact-card a span{display:block;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--cyan);margin-bottom:3px;}
+  .contact-card a:hover{color:var(--cyan);}
+
+  footer{border-top:1px solid var(--line);padding:26px 0 40px;text-align:center;color:var(--muted);font-size:.83rem;font-family:'IBM Plex Mono',monospace;padding-bottom:calc(40px + env(safe-area-inset-bottom,0px));}
+
+  @media (prefers-reduced-motion: reduce){ * {animation:none!important;transition:none!important;} }
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="topbar">
+    <a href="#home" class="brand">Shahina <em>Rajamani</em></a>
+    <nav class="pages">
+      <a href="#home" data-page="home">Home</a>
+      <a href="#experience" data-page="experience">Experience</a>
+      <a href="#projects" data-page="projects">Projects</a>
+      <a href="#skills" data-page="skills">Skills &amp; education</a>
+      <a href="#contact" data-page="contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <div class="page" id="page-home">
+    <div class="hero">
+      <svg viewBox="0 0 1000 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <line x1="80" y1="60" x2="260" y2="150"/><line x1="260" y1="150" x2="180" y2="300"/>
+        <line x1="260" y1="150" x2="430" y2="90"/><line x1="430" y1="90" x2="600" y2="180"/>
+        <line x1="600" y1="180" x2="760" y2="70"/><line x1="600" y1="180" x2="720" y2="320"/>
+        <line x1="180" y1="300" x2="360" y2="360"/><line x1="360" y1="360" x2="600" y2="180"/>
+        <line x1="760" y1="70" x2="920" y2="140"/><line x1="720" y1="320" x2="900" y2="350"/>
+        <circle class="v" cx="80" cy="60" r="4"/><circle cx="260" cy="150" r="5"/>
+        <circle class="v" cx="180" cy="300" r="4"/><circle cx="430" cy="90" r="4"/>
+        <circle class="v" cx="600" cy="180" r="6"/><circle cx="760" cy="70" r="4"/>
+        <circle class="v" cx="720" cy="320" r="4"/><circle cx="360" cy="360" r="4"/>
+        <circle cx="920" cy="140" r="3"/><circle class="v" cx="900" cy="350" r="3"/>
+      </svg>
+      <div class="wrap">
+        <p class="eyebrow mono">AI / ML engineering · applied research</p>
+        <h1 class="hero-name">Shahina<br><span class="accent">Rajamani</span></h1>
+        <p class="hero-sum">MS in Artificial Intelligence (3.96 GPA), building RAG pipelines, fine-tuning transformer models, and shipping agentic workflows with PyTorch, Hugging Face, LangChain, and FAISS.</p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn primary">View projects</a>
+          <a href="#experience" class="btn">See experience</a>
+        </div>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="facts">
+        <div class="fact reveal"><div class="n serif">3.96</div><div class="l">GPA · MS AI, UM-Dearborn</div></div>
+        <div class="fact reveal"><div class="n serif">8+</div><div class="l">applied ML / GenAI projects</div></div>
+        <div class="fact reveal"><div class="n serif">10 yrs</div><div class="l">combined engineering experience</div></div>
+      </div>
+      <div class="contact-row">
+        <span>Farmington Hills, MI</span>
+        <a href="tel:+12489497103">+1 248 949 7103</a>
+        <a href="mailto:shahina2030@gmail.com">shahina2030@gmail.com</a>
+        <a href="https://linkedin.com/in/shahina-rajamani-7778615b" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="page" id="page-experience">
+    <div class="wrap">
+      <section>
+        <h2>Current role</h2>
+        <div class="tl">
+          <div class="tl-item reveal">
+            <div class="tl-head"><span class="tl-title">Data Science &amp; AI/ML Engineering Intern / Co-op</span><span class="tl-date mono">Jun 2026 – Present</span></div>
+            <div class="tl-org">Nexteer Automotive · Auburn Hills, MI</div>
+            <ul>
+              <li>Developed and evaluated transformer-based ML classification models for commodity and part-family classification, supporting automated classification of manufacturing data.</li>
+              <li>Built end-to-end NLP pipelines for text preprocessing, Sentence Transformer embedding generation, training, inference, and evaluation using Python, scikit-learn, and XGBoost.</li>
+              <li>Developed an automated Knowledge Base analysis workflow using Claude Code and MCP connected to enterprise data sources to identify recurring support issues and detect KB coverage gaps.</li>
+              <li>Automated large-scale email and support-data analysis via batch processing, reducing manual KB review effort.</li>
+              <li>Explored converting a Power Semantic Model into a Neo4j Knowledge Graph, using Cypher for relationship-based retrieval.</li>
+              <li>Supported an Agentic AI team by refining prompts, debugging agent routing, and evaluating agent responses.</li>
+              <li>Collaborated cross-functionally to validate AI predictions, test GenAI chatbot functionality, and communicate findings to stakeholders.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Industry background</h2>
+        <div class="tl">
+          <div class="tl-item reveal">
+            <div class="tl-head"><span class="tl-title">Consultant</span><span class="tl-date mono">Dec 2019 – Sep 2021</span></div>
+            <div class="tl-org">Infosys Limited · Bangalore, India</div>
+            <ul><li>Led ServiceNow development across ITSM, CSM, and CMDB modules in Agile environments.</li><li>Collaborated with cross-functional teams on data-driven automation workflows.</li></ul>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-head"><span class="tl-title">Senior Software Engineer</span><span class="tl-date mono">Jul 2014 – Nov 2019</span></div>
+            <div class="tl-org">CGI Inc. · Bangalore, India</div>
+            <ul><li>Deployed multiple ServiceNow deliverables for enterprise software projects involving data integration.</li><li>Participated in system upgrades and workflow migration initiatives.</li></ul>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-head"><span class="tl-title">Project Engineer</span><span class="tl-date mono">Sep 2011 – Jul 2014</span></div>
+            <div class="tl-org">Wipro Technologies · Bangalore, India</div>
+            <ul><li>Supported IT service management solutions using BMC Remedy for an enterprise Cisco client.</li><li>Worked on incident, problem, and change management workflows, application support, and issue resolution.</li></ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="page" id="page-projects">
+    <div class="wrap">
+      <section>
+        <h2>AI/ML projects</h2>
+        <div class="proj-grid">
+          <div class="proj reveal" style="--accent:var(--violet)">
+            <h3>LLaMA-based RAG Q&amp;A system</h3>
+            <ul><li>End-to-end RAG pipeline with LLaMA, dense embeddings, and FAISS similarity search.</li><li>Chunking &amp; embedding strategies engineered to reduce hallucinations.</li><li>QLoRA/PEFT fine-tuning on a domain corpus; ablations on retrieval depth &amp; chunk size.</li></ul>
+            <div class="tags"><span class="tag">LLaMA</span><span class="tag">FAISS</span><span class="tag">QLoRA</span></div>
+          </div>
+          <div class="proj reveal" style="--accent:var(--violet)">
+            <h3>Clickbait spoiling — SemEval</h3>
+            <ul><li>Fine-tuned RoBERTa, DistilRoBERTa, and FLAN-T5 for spoiler classification and generation.</li><li>Curriculum learning + Bayesian hyperparameter optimization for training stability.</li><li>Evaluated with F1, ROUGE, BLEU, and METEOR.</li></ul>
+            <div class="tags"><span class="tag">RoBERTa</span><span class="tag">FLAN-T5</span><span class="tag">NLP</span></div>
+          </div>
+          <div class="proj reveal" style="--accent:var(--coral)">
+            <h3>Adversarial ML &amp; robustness</h3>
+            <ul><li>Modular PyTorch framework for white-box (FGSM, PGD, APGD) and black-box (Square) attacks.</li><li>PGD-based adversarial training; measured robust accuracy &amp; attack success rate.</li></ul>
+            <div class="tags"><span class="tag">PyTorch</span><span class="tag">PGD</span><span class="tag">Robustness</span></div>
+          </div>
+          <div class="proj reveal" style="--accent:var(--cyan)">
+            <h3>Urban satellite imagery — GAN</h3>
+            <ul><li>GAN-based spatiotemporal architecture reconstructing sparse/degraded imagery.</li><li>Spatial + temporal attention modeling urban structural change over time.</li></ul>
+            <div class="tags"><span class="tag">GAN</span><span class="tag">Remote sensing</span></div>
+          </div>
+          <div class="proj reveal" style="--accent:var(--cyan)">
+            <h3>Hack Dearborn 4 — presenter</h3>
+            <ul><li>AI-assisted system integrating Google ADK agents with YOLO object detection (COCO-trained).</li><li>Optimized edge inference for low-latency, real-time assistive AI.</li></ul>
+            <div class="tags"><span class="tag">YOLO</span><span class="tag">ADK agents</span></div>
+          </div>
+          <div class="proj reveal" style="--accent:var(--violet)">
+            <h3>LLM-based robot control</h3>
+            <ul><li>Flask chatbot using a local LLM to interpret natural-language robot commands.</li><li>Simulated real-time control from user-provided coordinates.</li></ul>
+            <div class="tags"><span class="tag">Flask</span><span class="tag">Local LLM</span></div>
+          </div>
+          <div class="proj reveal" style="--accent:var(--cyan)">
+            <h3>ANPR — license plate recognition</h3>
+            <ul><li>PyTorch CNN system for plate detection and OCR-based character recognition.</li><li>Image preprocessing to improve recognition accuracy.</li></ul>
+            <div class="tags"><span class="tag">CNN</span><span class="tag">OCR</span></div>
+          </div>
+          <div class="proj reveal" style="--accent:var(--coral)">
+            <h3>Red ball tracking — ROS2/Gazebo</h3>
+            <ul><li>Perception-to-control pipeline using HSV-based detection for autonomous target tracking.</li></ul>
+            <div class="tags"><span class="tag">ROS2</span><span class="tag">Gazebo</span></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="page" id="page-skills">
+    <div class="wrap">
+      <section>
+        <h2>Core competencies</h2>
+        <div class="skill-block reveal">
+          <div class="skill-label">generative ai &amp; llms</div>
+          <div class="cluster">
+            <span class="chip big">RAG</span><span class="chip big">MCP</span><span class="chip">Agentic AI</span><span class="chip">Claude Code</span><span class="chip">Transformer Models</span><span class="chip">Hugging Face</span><span class="chip">LangChain</span><span class="chip">FAISS</span><span class="chip">QLoRA / PEFT</span><span class="chip">LLaMA</span><span class="chip">Mistral</span><span class="chip">LLM APIs</span>
+          </div>
+        </div>
+        <div class="skill-block reveal">
+          <div class="skill-label">machine learning</div>
+          <div class="cluster"><span class="chip">Deep Learning</span><span class="chip">NLP</span><span class="chip">CNNs</span><span class="chip">Model Optimization</span><span class="chip">Model Evaluation</span><span class="chip">XGBoost</span></div>
+        </div>
+        <div class="skill-block reveal">
+          <div class="skill-label">frameworks</div>
+          <div class="cluster"><span class="chip">PyTorch</span><span class="chip">TensorFlow</span><span class="chip">Keras</span><span class="chip">scikit-learn</span></div>
+        </div>
+        <div class="skill-block reveal">
+          <div class="skill-label">data &amp; visualization</div>
+          <div class="cluster"><span class="chip">PySpark</span><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">Matplotlib</span><span class="chip">Plotly</span></div>
+        </div>
+        <div class="skill-block reveal">
+          <div class="skill-label">ai trust &amp; security</div>
+          <div class="cluster"><span class="chip">Trustworthy AI</span><span class="chip">Robustness</span><span class="chip">Explainability (XAI)</span><span class="chip">Fairness</span><span class="chip">Bias Mitigation</span></div>
+        </div>
+        <div class="skill-block reveal">
+          <div class="skill-label">tools &amp; programming</div>
+          <div class="cluster"><span class="chip">Python</span><span class="chip">C++</span><span class="chip">Microsoft Fabric</span><span class="chip">Git</span><span class="chip">Docker</span><span class="chip">Linux</span><span class="chip">Streamlit</span><span class="chip">ROS2</span><span class="chip">Gazebo</span><span class="chip">Agile/Scrum</span></div>
+        </div>
+      </section>
+      <section>
+        <h2>Education</h2>
+        <div class="edu-entry reveal">
+          <div class="school">University of Michigan–Dearborn</div>
+          <div class="deg">MS in Artificial Intelligence, Concentration in Machine Learning · 3.96 GPA · Expected Dec 2026</div>
+        </div>
+        <div class="edu-entry reveal">
+          <div class="school">Anna University, Chennai, India</div>
+          <div class="deg">B.E. in Electrical and Electronics Engineering · 3.76 GPA · April 2011</div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="page" id="page-contact">
+    <div class="wrap">
+      <section>
+        <h2>Get in touch</h2>
+        <div class="contact-card reveal">
+          <a href="mailto:shahina2030@gmail.com"><span>Email</span>shahina2030@gmail.com</a>
+          <a href="tel:+12489497103"><span>Phone</span>+1 248 949 7103</a>
+          <a href="https://linkedin.com/in/shahina-rajamani-7778615b" target="_blank" rel="noopener"><span>LinkedIn</span>linkedin.com/in/shahina-rajamani</a>
+          <a href="#"><span>Location</span>Farmington Hills, MI</a>
+        </div>
+      </section>
+    </div>
+  </div>
+
+</main>
+
+<footer>© Shahina Rajamani · built with care</footer>
+
+<script>
+(function(){
+  var pages = ['home','experience','projects','skills','contact'];
+  var navLinks = document.querySelectorAll('nav.pages a');
+  var titles = {home:'Shahina Rajamani — AI/ML Engineer', experience:'Experience — Shahina Rajamani', projects:'Projects — Shahina Rajamani', skills:'Skills & Education — Shahina Rajamani', contact:'Contact — Shahina Rajamani'};
+
+  function animateIn(container){
+    var items = container.querySelectorAll('.reveal');
+    items.forEach(function(el,i){
+      el.classList.remove('in');
+      el.style.transitionDelay = (i*70)+'ms';
+    });
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        items.forEach(function(el){ el.classList.add('in'); });
+      });
+    });
+  }
+
+  function activate(next,id){
+    next.classList.add('active','entering');
+    navLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('data-page') === id); });
+    document.title = titles[id] || titles.home;
+    window.scrollTo(0,0);
+    setTimeout(function(){ next.classList.remove('entering'); }, 500);
+    animateIn(next);
+  }
+
+  function show(id){
+    if(pages.indexOf(id) === -1) id = 'home';
+    var current = document.querySelector('.page.active');
+    var next = document.getElementById('page-'+id);
+    if(!next) return;
+    if(current && current !== next){
+      current.classList.add('leaving');
+      setTimeout(function(){
+        current.classList.remove('active','leaving');
+        activate(next,id);
+      }, 180);
+    } else {
+      activate(next,id);
+    }
+  }
+  function route(){ show((location.hash || '#home').replace('#','')); }
+  window.addEventListener('hashchange', route);
+  route();
+})();
+</script>
+</body>
+</html>
