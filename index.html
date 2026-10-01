@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Shahina Rajamani // Agentic AI · RAG · MCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#05070A;--panel:#0B0F14;--text:#D9F2E3;--muted:#7A968D;--green:#46F79C;--cyan:#57C8FF;--amber:#FFB454;--line:rgba(70,247,156,.22);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.65 'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace}
+a{color:inherit}.wrap{max-width:960px;margin:0 auto;padding:0 24px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(5,7,10,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 24px;max-width:960px;margin:0 auto}
+.brand{font-weight:600;color:var(--green);text-decoration:none;font-size:.92rem}.brand span{color:var(--muted);font-weight:400}
+nav{display:flex;gap:2px;flex-wrap:wrap;font-size:.8rem}
+nav a{text-decoration:none;color:var(--muted);padding:5px 9px;border:1px solid transparent}
+nav a:before{content:"["}nav a:after{content:"]"}nav a:hover{color:var(--cyan)}nav a.active{color:var(--green);border-color:var(--line)}
+.page{display:none}.page.active{display:block;animation:in .4s ease both}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.term{background:var(--panel);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.bar{display:flex;gap:6px;align-items:center;padding:9px 12px;border-bottom:1px solid var(--line);font-size:.72rem;color:var(--muted)}
+.bar i{width:9px;height:9px;border-radius:50%;background:#3a3f3d}.bar b{font-weight:400;margin-left:6px}
+.hero{padding:52px 0 24px}
+.grid2{display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:start}
+@media(max-width:760px){.grid2,.cols{grid-template-columns:1fr!important}}
+.tag0{font-size:.78rem;color:var(--cyan);margin:0 0 16px}
+h1{font-size:2.1rem;margin:0 0 6px}h1 span{color:var(--green);text-shadow:0 0 16px rgba(70,247,156,.4)}
+.role{color:var(--amber);font-size:.92rem;margin:0 0 18px}
+.sum{opacity:.88;font-size:.92rem;max-width:62ch;margin:0 0 24px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:9px 16px;border:1px solid var(--line);border-radius:4px;font-size:.82rem;text-decoration:none;transition:.2s}
+.btn:before{content:"> ";color:var(--green)}.btn:hover{border-color:var(--green);color:var(--green)}
+.btn.p{background:rgba(70,247,156,.08);border-color:var(--green);color:var(--green)}
+.side pre{margin:0;padding:14px 16px;font:inherit;font-size:.76rem;line-height:1.85;min-height:200px;white-space:pre-wrap}
+.cur{display:inline-block;width:7px;background:var(--green);animation:bl 1s step-end infinite}@keyframes bl{50%{opacity:0}}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-top:32px}
+.stats div{background:var(--panel);padding:16px 18px}.stats small{display:block;font-size:.68rem;color:var(--muted)}.stats small:before{content:"● ";color:var(--green)}.stats b{font-size:1.25rem}
+section{padding:34px 0}
+h2{font-size:1.05rem;text-transform:uppercase;letter-spacing:.03em;margin:0 0 20px}h2:before{content:"// ";color:var(--green)}
+.about{max-width:68ch;font-size:.92rem;opacity:.9}
+.path{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;font-size:.76rem;margin-top:16px;color:var(--cyan)}.path em{color:var(--muted);font-style:normal}
+.build{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.build li{padding:12px 14px;border:1px solid var(--line);border-radius:4px;font-size:.84rem;background:var(--panel)}.build li:before{content:"▸ ";color:var(--green)}
+@media(max-width:640px){.build{grid-template-columns:1fr}}
+.feat{margin-bottom:20px}.feat.hl{border-color:var(--green);box-shadow:0 0 24px rgba(70,247,156,.1)}
+.fh{padding:14px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:8px 14px;flex-wrap:wrap}
+.ft{color:var(--green);font-weight:600}.fo{color:var(--muted);font-size:.78rem}.fd{color:var(--cyan);font-size:.76rem}
+.fb{padding:14px 18px 16px}.fb ul{margin:0 0 12px;padding-left:18px}.fb li{margin-bottom:6px;font-size:.84rem;opacity:.92}
+.tags,.proof{display:flex;flex-wrap:wrap;gap:6px}.tag{font-size:.68rem;padding:3px 8px;border:1px solid var(--line);border-radius:3px;color:var(--cyan)}
+.proof{margin-top:14px}.proof a{font-size:.74rem;padding:5px 10px;border:1px solid var(--amber);color:var(--amber);border-radius:3px;text-decoration:none}.proof a:hover{background:rgba(255,180,84,.1)}
+.badge{font-size:.66rem;color:var(--bg);background:var(--green);padding:1px 7px;border-radius:3px;margin-left:8px;vertical-align:middle}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.mini{padding:12px 14px}.mini b{color:var(--green);font-size:.84rem}.mini p{margin:4px 0 8px;font-size:.78rem;opacity:.85}
+.lab{font-size:.72rem;color:var(--amber);margin:18px 0 8px}.lab:before{content:"$ grep ";color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{font-size:.8rem;padding:5px 11px;border:1px solid var(--line);border-radius:4px}.chip.b{color:var(--green);border-color:var(--green)}
+.row{padding:14px 18px;border-bottom:1px solid var(--line)}.row:last-child{border:0}.row .s{color:var(--green);font-weight:600}.row .d{color:var(--muted);font-size:.8rem}
+.cl a{display:flex;justify-content:space-between;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line);text-decoration:none;font-size:.86rem}
+.cl a:last-child{border:0}.cl a:hover{background:rgba(70,247,156,.06);color:var(--green)}.cl span{color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:22px 0 calc(36px + env(safe-area-inset-bottom,0px));text-align:center;color:var(--muted);font-size:.75rem}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header><div class="top">
+<a href="#home" class="brand">SHAHINA_RAJAMANI <span>// AI_LAB</span></a>
+<nav><a href="#home" data-p="home">home</a><a href="#experience" data-p="experience">experience</a><a href="#projects" data-p="projects">projects</a><a href="#skills" data-p="skills">skills</a><a href="#contact" data-p="contact">contact</a></nav>
+</div></header>
+
+<main>
+<div class="page" id="page-home"><div class="wrap">
+<div class="hero">
+ <div class="grid2">
+  <div>
+   <p class="tag0">root@shahina:~$ whoami<span class="cur">&nbsp;</span></p>
+   <h1>Shahina <span>Rajamani</span></h1>
+   <p class="role">AI / ML Engineer · Agentic AI · RAG · MCP</p>
+   <p class="sum">MS in Artificial Intelligence (Generative AI, RAG, NLP) building enterprise Agentic AI systems with PyTorch, Hugging Face, LangChain, FAISS and MCP — on top of 10 years of software engineering.</p>
+   <div class="cta"><a href="#projects" class="btn p">view_projects</a><a href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" rel="noopener" class="btn">github</a><a href="https://linkedin.com/in/shahina-rajamani-7778615b" target="_blank" rel="noopener" class="btn">linkedin</a></div>
+  </div>
+  <div class="term side"><div class="bar"><i></i><i></i><i></i><b>status.log</b></div><pre id="typer"></pre></div>
+ </div>
+ <div class="stats"><div><small>gpa</small><b>3.96</b></div><div><small>projects_shipped</small><b>10+</b></div><div><small>yrs_engineering</small><b>10</b></div></div>
+</div>
+
+<section><h2>about_me</h2>
+<p class="about">For a decade, I built the systems enterprises run on: ServiceNow, ITSM, integrations, and automation. Then I went back to earn my MS in AI because I kept seeing how much value was locked inside support tickets, emails, and knowledge bases.</p>
+<p class="about">Now I build the layer that unlocks it: RAG pipelines, MCP-connected agents, and ML classification — tested against real data and designed for production, not just demos.</p>
+<p class="about">I'm happiest when a messy pile of enterprise data turns into something a team can actually use, and I can't stop tinkering until it does.</p>
+<div class="path"><span>10+ yrs software engineering</span><em>→</em><span>MS in AI</span><em>→</em><span>applied ML</span><em>→</em><span>GenAI</span><em>→</em><span>RAG</span><em>→</em><span>Agentic AI / MCP</span></div>
+</section>
+
+<section><h2>currently_building</h2>
+<ul class="build"><li>Agentic AI &amp; tool orchestration</li><li>Enterprise RAG &amp; knowledge systems</li><li>Transformer-based ML classification</li><li>MCP-connected AI workflows</li></ul>
+</section>
+
+<section><h2>highlight</h2>
+<div class="term feat hl"><div class="fh"><div><div class="ft">Enterprise AI &amp; Agentic AI <span class="badge">CURRENT</span></div><div class="fo">Nexteer Automotive · Data Science &amp; AI/ML Co-op</div></div><div class="fd">Jun 2026 – Present</div></div>
+<div class="fb"><ul><li>Claude Code + MCP workflow over enterprise data to surface recurring support issues and Knowledge Base gaps.</li><li>Transformer-based classification for commodity and part-family data.</li><li>Neo4j knowledge-graph exploration with Cypher-based retrieval.</li></ul><a href="#experience" class="btn">full_experience</a></div></div>
+</section>
+</div></div>
+
+<div class="page" id="page-experience"><div class="wrap">
+<section><h2>experience_log</h2>
+<div class="term feat hl"><div class="bar"><i></i><i></i><i></i><b>current_role.log</b></div>
+<div class="fh"><div><div class="ft">Data Science &amp; AI/ML Engineering Intern / Co-op</div><div class="fo">Nexteer Automotive · Auburn Hills, MI</div></div><div class="fd">Jun 2026 – Present</div></div>
+<div class="fb"><ul>
+<li>Developed and evaluated transformer-based ML classification models for commodity and part-family classification, supporting automated classification of manufacturing data.</li>
+<li>Built end-to-end NLP pipelines — preprocessing, Sentence Transformer embeddings, training, inference and evaluation — using Python, scikit-learn and XGBoost.</li>
+<li>Developed an automated Knowledge Base analysis workflow using Claude Code and MCP connected to enterprise data sources to identify recurring support issues and KB coverage gaps.</li>
+<li>Automated large-scale email and support-data analysis via batch processing, reducing manual KB review effort.</li>
+<li>Explored converting a Power Semantic Model into a Neo4j Knowledge Graph, using Cypher for relationship-based retrieval.</li>
+<li>Supported an Agentic AI team by refining prompts, debugging agent routing and evaluating agent responses.</li>
+<li>Validated AI predictions, tested GenAI chatbot functionality and communicated findings to stakeholders.</li></ul>
+<div class="tags"><span class="tag">MCP</span><span class="tag">Claude Code</span><span class="tag">Sentence Transformers</span><span class="tag">XGBoost</span><span class="tag">Neo4j</span><span class="tag">Agentic AI</span></div></div></div>
+</section>
+<section><h2>industry_background</h2>
+<div class="term">
+<div class="fh"><div><div class="ft">Consultant</div><div class="fo">Infosys Limited · Bangalore, India</div></div><div class="fd">Dec 2019 – Sep 2021</div></div>
+<div class="fb"><ul><li>Led ServiceNow development across ITSM, CSM and CMDB modules in Agile environments.</li><li>Built data-driven automation workflows with cross-functional teams.</li></ul></div>
+<div class="fh"><div><div class="ft">Senior Software Engineer</div><div class="fo">CGI Inc. · Bangalore, India</div></div><div class="fd">Jul 2014 – Nov 2019</div></div>
+<div class="fb"><ul><li>Delivered ServiceNow solutions for enterprise projects involving data integration.</li><li>Participated in system upgrades and workflow migrations.</li></ul></div>
+<div class="fh"><div><div class="ft">Project Engineer</div><div class="fo">Wipro Technologies · Bangalore, India</div></div><div class="fd">Sep 2011 – Jul 2014</div></div>
+<div class="fb"><ul><li>Supported ITSM solutions on BMC Remedy for an enterprise Cisco client.</li><li>Worked on incident, problem and change management workflows and application support.</li></ul></div>
+</div></section>
+</div></div>
+
+<div class="page" id="page-projects"><div class="wrap">
+<section><h2>featured_projects</h2>
+<div class="term feat hl"><div class="fh"><div><div class="ft">Enterprise AI &amp; Agentic AI</div><div class="fo">Nexteer Automotive</div></div><div class="fd">2026</div></div>
+<div class="fb"><ul><li>MCP-connected Knowledge Base analysis, ML classification and agent evaluation on enterprise data.</li></ul><div class="tags"><span class="tag">MCP</span><span class="tag">RAG</span><span class="tag">Agentic AI</span><span class="tag">Transformers</span></div>
+<div class="proof"><a href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" rel="noopener">GitHub</a><a href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" rel="noopener">Architecture</a><a href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" rel="noopener">Write-up</a></div></div></div>
+
+<div class="term feat"><div class="fh"><div class="ft">LLaMA-based RAG Q&amp;A system</div></div>
+<div class="fb"><ul><li>End-to-end RAG pipeline with LLaMA, dense embeddings and FAISS similarity search.</li><li>Chunking and embedding strategies engineered to reduce hallucinations.</li><li>QLoRA/PEFT fine-tuning on a domain corpus; ablations on retrieval depth and chunk size.</li></ul><div class="tags"><span class="tag">LLaMA</span><span class="tag">FAISS</span><span class="tag">QLoRA</span></div>
+<div class="proof"><a href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" rel="noopener">GitHub</a><a href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" rel="noopener">Write-up</a></div></div></div>
+
+<div class="term feat"><div class="fh"><div class="ft">Hack Dearborn 4 — Google ADK + YOLO</div></div>
+<div class="fb"><ul><li>AI-assisted system integrating Google ADK agents with YOLO object detection (COCO-trained).</li><li>Optimized edge inference for low-latency, real-time assistive AI; presented at the event.</li></ul><div class="tags"><span class="tag">ADK agents</span><span class="tag">YOLO</span></div>
+<div class="proof"><a href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" rel="noopener">GitHub</a><a href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" rel="noopener">Demo</a></div></div></div>
+</section>
+
+<section><h2>more_projects</h2>
+<div class="cols">
+<div class="term mini"><b>Clickbait spoiling — SemEval</b><p>Fine-tuned RoBERTa, DistilRoBERTa and FLAN-T5 with curriculum learning and Bayesian HPO; evaluated with F1, ROUGE, BLEU, METEOR.</p><div class="tags"><span class="tag">NLP</span><span class="tag">FLAN-T5</span></div></div>
+<div class="term mini"><b>Adversarial ML &amp; robustness</b><p>PyTorch framework for white-box (FGSM, PGD, APGD) and black-box (Square) attacks, with PGD adversarial training.</p><div class="tags"><span class="tag">PyTorch</span><span class="tag">Robustness</span></div></div>
+<div class="term mini"><b>Urban satellite imagery — GAN</b><p>Spatiotemporal GAN with spatial and temporal attention to reconstruct sparse imagery and model urban change.</p><div class="tags"><span class="tag">GAN</span><span class="tag">Remote sensing</span></div></div>
+<div class="term mini"><b>LLM-based robot control</b><p>Flask chatbot using a local LLM to interpret natural-language robot commands and simulate real-time control.</p><div class="tags"><span class="tag">Flask</span><span class="tag">Local LLM</span></div></div>
+<div class="term mini"><b>ANPR — license plate recognition</b><p>PyTorch CNN system for plate detection and OCR-based character recognition.</p><div class="tags"><span class="tag">CNN</span><span class="tag">OCR</span></div></div>
+<div class="term mini"><b>Red ball tracking — ROS2/Gazebo</b><p>HSV-based perception-to-control pipeline for autonomous target tracking.</p><div class="tags"><span class="tag">ROS2</span><span class="tag">Gazebo</span></div></div>
+</div></section>
+</div></div>
+
+<div class="page" id="page-skills"><div class="wrap">
+<section><h2>skills_matrix</h2>
+<div class="lab">generative_ai_llms</div><div class="chips"><span class="chip b">RAG</span><span class="chip b">MCP</span><span class="chip">Agentic AI</span><span class="chip">Claude Code</span><span class="chip">Transformers</span><span class="chip">Hugging Face</span><span class="chip">LangChain</span><span class="chip">FAISS</span><span class="chip">QLoRA / PEFT</span><span class="chip">LLaMA</span><span class="chip">Mistral</span><span class="chip">LLM APIs</span></div>
+<div class="lab">machine_learning</div><div class="chips"><span class="chip">Deep Learning</span><span class="chip">NLP</span><span class="chip">CNNs</span><span class="chip">Model Optimization</span><span class="chip">Model Evaluation</span><span class="chip">XGBoost</span></div>
+<div class="lab">frameworks</div><div class="chips"><span class="chip">PyTorch</span><span class="chip">TensorFlow</span><span class="chip">Keras</span><span class="chip">scikit-learn</span></div>
+<div class="lab">data_visualization</div><div class="chips"><span class="chip">PySpark</span><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">Matplotlib</span><span class="chip">Plotly</span></div>
+<div class="lab">ai_trust_security</div><div class="chips"><span class="chip">Trustworthy AI</span><span class="chip">Robustness</span><span class="chip">Explainability (XAI)</span><span class="chip">Fairness</span><span class="chip">Bias Mitigation</span></div>
+<div class="lab">tools_programming</div><div class="chips"><span class="chip">Python</span><span class="chip">C++</span><span class="chip">Microsoft Fabric</span><span class="chip">Git</span><span class="chip">Docker</span><span class="chip">Linux</span><span class="chip">Streamlit</span><span class="chip">ROS2</span><span class="chip">Gazebo</span><span class="chip">Agile/Scrum</span></div>
+</section>
+<section><h2>education</h2>
+<div class="term"><div class="row"><div class="s">University of Michigan–Dearborn</div><div class="d">MS in Artificial Intelligence, Concentration in Machine Learning · GPA 3.96 · Expected Dec 2026</div></div>
+<div class="row"><div class="s">Anna University, Chennai, India</div><div class="d">B.E. in Electrical and Electronics Engineering · GPA 3.76 · April 2011</div></div></div>
+</section>
+</div></div>
+
+<div class="page" id="page-contact"><div class="wrap">
+<section><h2>contact</h2>
+<p style="color:var(--muted);font-size:.88rem;max-width:56ch;margin:0 0 18px">Have a role in mind, a question, or just want to connect? Open a channel below.</p>
+<div class="term"><div class="bar"><i></i><i></i><i></i><b>contact.sh</b></div><div class="cl">
+<a href="mailto:shahina2030@gmail.com"><span>email</span>shahina2030@gmail.com</a>
+<a href="https://linkedin.com/in/shahina-rajamani-7778615b" target="_blank" rel="noopener"><span>linkedin</span>shahina-rajamani</a>
+<a href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" rel="noopener"><span>github</span>YOUR_GITHUB_USERNAME</a>
+<a href="#contact"><span>location</span>Farmington Hills, MI</a>
+</div></div></section>
+</div></div>
+</main>
+<footer>© 2026 Shahina Rajamani // EOF</footer>
+
+<script>
+(function(){
+var P=['home','experience','projects','skills','contact'],L=document.querySelectorAll('nav a');
+function show(){
+ var id=(location.hash||'#home').slice(1);if(P.indexOf(id)<0)id='home';
+ document.querySelectorAll('.page').forEach(function(p){p.classList.toggle('active',p.id==='page-'+id)});
+ L.forEach(function(a){a.classList.toggle('active',a.dataset.p===id)});
+ window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',show);show();
+var lines=['initializing session...','user    : shahina_rajamani','role    : AI/ML Engineering Co-op','focus   : Agentic AI · RAG · MCP','gpa     : 3.96 / 4.00','stack   : PyTorch · HF · LangChain · FAISS','status  : building @ Nexteer Automotive','location: Farmington Hills, MI'];
+var el=document.getElementById('typer'),c='<span class="cur">&nbsp;</span>';
+if(matchMedia('(prefers-reduced-motion: reduce)').matches){el.textContent=lines.join('\n');return}
+var li=0,ci=0,out='';
+(function t(){
+ if(li>=lines.length){el.innerHTML=out+c;return}
+ var l=lines[li];
+ if(ci<=l.length){el.innerHTML=out+l.slice(0,ci)+c;ci++;setTimeout(t,22)}
+ else{out+=l+'\n';li++;ci=0;setTimeout(t,140)}
+})();
+})();
+</script>
+</body>
+</html>
